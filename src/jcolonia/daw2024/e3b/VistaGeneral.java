@@ -147,7 +147,7 @@ public class VistaGeneral {
 	 * @param texto el texto deseado
 	 */
 	public static void mostrarTexto(String texto) {
-		out.println(texto);
+		VentanaVisorBase.getMostrarEstado().setText(texto);
 	}
 
 	/**
@@ -156,7 +156,9 @@ public class VistaGeneral {
 	 * @param textoAviso el texto deseado
 	 */
 	public static void mostrarAviso(String textoAviso) {
-		out.printf("%s*** ATENCIÓN: %s ***%s%n%n", ANSI_ROJO, textoAviso, ANSI_NORMAL);
+		String mensaje;
+		mensaje = String.format("%s*** ATENCIÓN: %s ***%s%n%n", ANSI_ROJO, textoAviso, ANSI_NORMAL);
+		VentanaVisorBase.getMostrarEstado().setText(mensaje);
 	}
 
 	/**
