@@ -40,7 +40,7 @@ public class VentanaVisorBase {
 	/** El panel para el texto central, con barras deslizantes. */
 	private JScrollPane panelDeslizante;
 	/** El área de texto multiusos central. */
-	private JTextArea cajaTexto;
+	private static JTextArea cajaTexto;
 	/** El panel inferior, para los botones principales. */
 	private JPanel panelBotones;
 	/** El botón de cancelar. */
@@ -156,7 +156,7 @@ public class VentanaVisorBase {
 	 * 
 	 * @return el área de texto indicada
 	 */
-	private JTextArea getCajaTexto() {
+	public static JTextArea getCajaTexto() {
 		if (cajaTexto == null) {
 			cajaTexto = new JTextArea();
 			cajaTexto.setFocusable(false);
@@ -198,6 +198,12 @@ public class VentanaVisorBase {
 	private JButton getBotónCancelar() {
 		if (botónCancelar == null) {
 			botónCancelar = new JButton("Cancelar");
+			botónCancelar.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					
+				}
+			});
 			botónCancelar.setMnemonic(KeyEvent.VK_C);
 		}
 		return botónCancelar;
