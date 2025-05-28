@@ -16,6 +16,9 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
+import javax.swing.JTextField;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  * Aplicación de ventanas con una única ventana principal y una caja de texto
@@ -44,6 +47,8 @@ public class VentanaVisorBase {
 	private JButton botónCancelar;
 	/** El botón de cancelar. */
 	private JButton botónAceptar;
+	/** Panel para mostrar estado y avisos del programa*/
+	private static JTextField mostrarEstado;
 
 	/**
 	 * Lanza la aplicación. Establece la apariencia general de la ventana y registra
@@ -79,6 +84,7 @@ public class VentanaVisorBase {
 		ventanaVisor.setBounds(100, 100, 450, 300);
 		ventanaVisor.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		ventanaVisor.getContentPane().add(getPanelExterior(), BorderLayout.CENTER);
+		ventanaVisor.getContentPane().add(getMostrarEstado(), BorderLayout.SOUTH);
 	}
 
 	/**
@@ -206,8 +212,23 @@ public class VentanaVisorBase {
 	private JButton getBotónAceptar() {
 		if (botónAceptar == null) {
 			botónAceptar = new JButton("Aceptar");
+			botónAceptar.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseClicked(MouseEvent e) {
+					AccesoBD.main(null);
+				}
+			});
 			botónAceptar.setMnemonic(KeyEvent.VK_A);
 		}
 		return botónAceptar;
+	}
+	/** Campo de texto preparado para mostrar avisos o el estado del programa
+	 * @return mostrarEstado devuelve el texto a mostrar*/
+	public static JTextField getMostrarEstado() {
+		if (mostrarEstado == null) {
+			mostrarEstado = new JTextField();
+			mostrarEstado.setColumns(10);
+		}
+		return mostrarEstado;
 	}
 }
