@@ -382,7 +382,8 @@ public class AccesoBD implements AutoCloseable {
 			VistaGeneral.mostrarAviso(mensaje);
 		}
 	}
-
+/**
+ * Metodo encargado de vaciar la tabla de la base de datos a la hora de hacer una nueva migracion de datos*/
 	private void vaciarBD() {
 		try {
 			sentenciaGeneralSQL.execute(SQL_VACIAR_TABLA);
